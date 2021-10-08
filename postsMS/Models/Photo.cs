@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace postsMS.Models
 {
-    public class PhotoFeed
+    public class Photo
     {
         [Key]
         public int Id { get; set; }
         public string Imagepath { get; set; }
-        public ICollection<Posts> posts { get; set; }
+        public int PostId { get; set; }
+        public Post Post { get; set; }
     }
 }

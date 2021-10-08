@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace postsMS.Models
 {
-    public class Posts
+    public class Post
     {
         public int Id { get; set; }
         public string title { get; set; }
@@ -13,6 +13,6 @@ namespace postsMS.Models
         public DateTime createdAt { get; set; }
         public DateTime updatedAt { get; set; }
         public int UserID { get; set; }
-        public ICollection<PhotoFeed> photos { get; set; }
+        public List<Photo> Photos { get; set; }
     }
 }

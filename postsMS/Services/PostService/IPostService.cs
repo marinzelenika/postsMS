@@ -10,5 +10,7 @@ namespace postsMS.Services.PostService
     {
         Task<List<GetPostDto>> GetAllPosts();
         Task<List<GetPostDto>> AddPost(AddPostDto newPost);
+        Task<GetPostDto> GetPostById(int id);
+        Task<List<GetPostDto>> DeletePost(int id);
     }
 }

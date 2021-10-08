@@ -12,8 +12,8 @@ namespace postsMS
     {
         public AutoMapperProfile()
         {
-            CreateMap<Posts, GetPostDto>();
-            CreateMap<AddPostDto, Posts>();
+            CreateMap<Post, GetPostDto>();
+            CreateMap<AddPostDto, Post>();
         }
     }
 }

@@ -29,5 +29,22 @@ namespace postsMS.Controllers
         {
             return Ok(await _postService.AddPost(newPost));
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSinglePost(int id)
+        {
+            return Ok(await _postService.GetPostById(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            List<GetPostDto> response = await _postService.DeletePost(id);
+            if (response == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }

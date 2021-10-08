@@ -23,20 +23,53 @@ namespace postsMS.Services.PostService
 
         public async Task<List<GetPostDto>> GetAllPosts()
         {
-            List<Posts> dbPosts = await _context.Posts.ToListAsync();
-            return dbPosts.Select(p => _mapper.Map<GetPostDto>(p)).ToList();
-            
+            List<GetPostDto> response = new List<GetPostDto>();
+            List<Post> dbPosts = await _context.Posts.ToListAsync();
+            response = dbPosts.Select(p => _mapper.Map<GetPostDto>(p)).ToList();
+            return response;
+
         }
 
         public async Task<List<GetPostDto>> AddPost(AddPostDto newPost)
         {
-           
-            Posts post = _mapper.Map<Posts>(newPost);
+            List<GetPostDto> response = new List<GetPostDto>();
+            Post post = _mapper.Map<Post>(newPost);
             post.createdAt = DateTime.Now;
             post.updatedAt = DateTime.Now;
             await _context.Posts.AddAsync(post);
             await _context.SaveChangesAsync();
-            return _context.Posts.Select(c => _mapper.Map<GetPostDto>(c)).ToList();
+            response =  _context.Posts.Select(c => _mapper.Map<GetPostDto>(c)).ToList();
+            return response;
         }
+
+        public async Task<GetPostDto> GetPostById(int id)
+        {
+            List<GetPostDto> response = new List<GetPostDto>();
+            Post dbPost = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            return _mapper.Map<GetPostDto>(dbPost);
+            
+
+        }
+
+        public async Task<List<GetPostDto>> DeletePost(int id)
+        {
+            List<GetPostDto> response = new List<GetPostDto>();
+            try
+            {
+                Post post = await _context.Posts.FirstAsync(p => p.Id == id);
+                _context.Posts.Remove(post);
+                await _context.SaveChangesAsync();
+
+                response =  _context.Posts.Select(p => _mapper.Map<GetPostDto>(p)).ToList();
+                return response;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+        }
+
     }
 }
