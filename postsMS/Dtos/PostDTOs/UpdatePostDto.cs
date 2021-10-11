@@ -6,7 +6,7 @@ using postsMS.Models;
 
 namespace postsMS.Dtos.PostDTOs
 {
-    public class AddPostDto
+    public class UpdatePostDto
     {
         public int Id { get; set; }
         public string title { get; set; }
@@ -15,5 +15,6 @@ namespace postsMS.Dtos.PostDTOs
         public DateTime updatedAt { get; set; }
         public int UserID { get; set; }
         public List<Photo> Photos { get; set; }
+
     }
 }

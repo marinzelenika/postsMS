@@ -71,5 +71,37 @@ namespace postsMS.Services.PostService
 
         }
 
+        public async Task<GetPostDto> UpdatePost(UpdatePostDto updatedPost)
+        {
+
+
+            try
+            {
+                Post post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == updatedPost.Id);
+
+                post.title = updatedPost.title;
+                post.body = updatedPost.body;
+                post.createdAt = updatedPost.createdAt;
+                post.updatedAt = DateTime.Now;
+
+
+
+                _context.Posts.Update(post);
+                await _context.SaveChangesAsync();
+
+                return _mapper.Map<GetPostDto>(post);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+            
+
+           
+        }
+
+
     }
 }

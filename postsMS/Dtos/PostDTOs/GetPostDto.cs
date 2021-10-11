@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using postsMS.Models;
 
 namespace postsMS.Dtos.PostDTOs
 {
@@ -13,6 +14,7 @@ namespace postsMS.Dtos.PostDTOs
         public DateTime createdAt { get; set; }
         public DateTime updatedAt { get; set; }
         public int UserID { get; set; }
+        public List<Photo> Photos { get; set; }
 
     }
 }
