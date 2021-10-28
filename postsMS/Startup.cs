@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using postsMS.Data;
+using postsMS.Services.ImageService;
 using postsMS.Services.PostService;
 
 namespace postsMS
@@ -42,6 +43,7 @@ namespace postsMS
                 o.MemoryBufferThreshold = int.MaxValue;
             });
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IImageService, ImageService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {

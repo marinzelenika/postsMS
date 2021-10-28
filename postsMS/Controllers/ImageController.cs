@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using postsMS.Data;
+using postsMS.Services.ImageService;
 
 namespace postsMS.Controllers
 {
@@ -15,10 +16,12 @@ namespace postsMS.Controllers
     public class ImageController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IImageService _imageService;
 
-        public ImageController(AppDbContext context)
+        public ImageController(AppDbContext context, IImageService imageservice)
         {
             _context = context;
+            _imageService = imageservice;
         }
 
         [HttpPost, DisableRequestSizeLimit]
